@@ -1,0 +1,46 @@
+
+
+body {
+  background-image:  url("../images/burningflag.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.main-container {
+
+  text-align: center;
+  margin: 5% 20%;
+  border: 1px solid black;
+  background-color: white;
+
+}
+
+#trump-headline {
+  border: 1px solid black;
+}
+
+#trump-face {
+  background-image: url("../images/happy-trump.jpg");
+  max-height: 100%;
+  max-width: 100%;
+}
+
+img {
+  max-height:100%;
+  max-width:100%;
+}
+
+
+
+.second-container {
+  background-color: blue;
+  color: white;
+  margin: 5% 5% 0 5%;
+  padding-bottom: 5%;
+}
+
+.options {
+  background-color: grey;
+  margin: 0 5%;
+  padding: 1%;
+}
