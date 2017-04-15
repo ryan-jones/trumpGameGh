@@ -90,37 +90,20 @@ window.onload = function(){
 
 //creates a new crisis and image when a solution is selectedCrisis
   $('.options').click(function(){
+      console.log(this)
       $('#situation-image').empty();
       game =  new TrumpGame(options);
+      var solutionsArray = game._getRandomSolution();
+      this.solution1 = solutionsArray[0];
+      this.solution2 = solutionsArray[1];
+      this.solution3 = solutionsArray[2];
       this.situation = game.getCrisis();
-
-
-      var getSolutionsArray = [];
-
-      for (var i =0; i < this.situation.wrongAnswers.length; i++){
-      var wrongAnswersIndex = Math.floor(Math.random()* this.situation.wrongAnswers.length);
-      getSolutionsArray.push(this.situation.wrongAnswers[wrongAnswersIndex]);
-      }
-      getSolutionsArray.push(this.situation.correctAnswer);
-
-
-      this.situation.solution1 = getSolutionsArray[Math.floor(Math.random()* getSolutionsArray.length)];
-
-      this.situation.solution2 = getSolutionsArray[Math.floor(Math.random()* getSolutionsArray.length)];
-
-      this.situation.solution3 = getSolutionsArray[Math.floor(Math.random()* getSolutionsArray.length)];
-
-      var solution1 = this.situation.solution1;
-      var solution2 =   this.situation.solution2;
-      var solution3 = this.situation.solution3;
-
-    
 
       $('#situations').html(this.situation.desc);
       $('#situation-image').append('<img  src="images/' + this.situation.imgName + '"/>');
-      $('.option-one').html(this.situation.solution1);
-      $('.option-two').html(this.situation.solution2);
-      $('.option-three').html(this.situation.solution3);
+      $('.options-one').html(this.solution1);
+      $('.options-two').html(this.solution2);
+      $('.options-three').html(this.solution3);
     });
 
 

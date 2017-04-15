@@ -11,49 +11,52 @@
   <body>
     <section class = "container-fluid">
       <div class="row main-container">
+
         <div class="row" id="trump-headline" >
           <div class="col-md-4"><span><img src = "images/happy-trump.jpg" class="img-circle"/></span></div>
-            <div class="col-md-3 "></div>
-            <div class="col-md-5"><span ><input id="slider" type="range"
-               min="5" max="200" step="5" value="5"/></div>
+          <div class="col-md-8"><span ><input id="slider" type="range"
+               min="0" max="200" step="5" value="0"/></div>
         </div> <!-- trump-headline-->
 
 
         <div class="second-container">
           <div class="row">
-            <div class="col-md-12"><h2>Situation</h2></div>
+            <div class="col-md-12"><h3 id="situations">Situation</h3>
+              <div id="situation-image"></div>
+            </div>
           </div>
           <div class="row"></div>
           <div class="row">
-            <div class="col-md-12"><h2>Solutions</h2></div>
+            <div class="col-md-12"><h4><span>Shit!</span> What do we do?</h4></div>
           </div>
 
 
           <div class="row options">
-            <div class="col-md-4"></div>
-            <div class="col-md-4">option 1</div>
-            <div class="col-md-4"></div>
+
+            <div class="col-md-12 option-one">option 1</div>
+
           </div>
 
           <div class="row options">
-            <div class="col-md-4"></div>
-            <div class="col-md-4">option 2</div>
-            <div class="col-md-4"></div>
+
+            <div class="col-md-12 option-two">option 2</div>
+
           </div>
           <div class="row options">
-            <div class="col-md-4"></div>
-            <div class="col-md-4">option 3</div>
-            <div class="col-md-4"></div>
+
+            <div class="col-md-12 option-three">option 3</div>
+            
           </div>
 
         </div> <!--second-container -->
 
         <div class="row">
-          <div class="col-md-6"><h3 id= "timer">Timer: </h3></div>
-          <div class="col-md-6"><h3 id= "points">Points:</h3></div>
+          <div class="col-md-6"><h4>Timer: <span id ="time">0</span><span>  seconds</span></h4></div>
+          <div class="col-md-6"><h4>Points: <span id ="points">0</span></h4></div>
         </div>
       </div> <!-- main-container-->
     </section> <!--container-fluid -->
+
     <div class="row">
       <div class="col-md-12">
         <button type="button" class="btn btn-primary">Start Game</button>
