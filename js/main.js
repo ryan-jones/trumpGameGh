@@ -57,3 +57,4 @@ TrumpGame.prototype.getSolutions = function(){
 
 
 };
+//building the timer

@@ -1,3 +1,4 @@
+const MAXTRUMPTIMEVALUE = 60;
 
 var options = {
 
@@ -49,7 +50,7 @@ var options = {
       correctAnswer: "Propose a first strike of Kim Jong Un's compound"},
 
     { desc: "Trump discovers his hands are too small to open a jar of queso dip", imgName: "hands.jpg",
-      wrongAnswer: ['Assure him that the phrase is "big feet ________"', "Offer to hire an illegal immigrant to open it for him" ],
+      wrongAnswers: ['Assure him that the phrase is "big feet ________"', "Offer to hire an illegal immigrant to open it for him" ],
       correctAnswer: "Arrange for several dozen strippers to come to White House to commemorate International Women's Day"},
 
     { desc: "Ivanka Trump forgot to close the door while changing", imgName: "ivanka.jpg ",
@@ -57,30 +58,11 @@ var options = {
   ],
 
 
-  solutions: [
-
-    "Strategically leave Breitbart news articles condemning Muslims around the Oval Office for him to find",
-    "Comment on how luscious his hair looks today",
-    "Remind him of that time he won 306 votes in the electoral college",
-    "Go onto primetime television and talk about resurrecting coal jobs",
-    "Convince Ivanka to give him a back rub",
-    "Suggest sending SEAL Team 6 to eliminate Rosie O'Donnel",
-    'Fire the last remaining African-American White House employee so that "the staff match the walls"',
-    "Show Trump the latest economic numbers and tell him how it is all because of him",
-    'Send Jared Kushner off to solve the Israel-Palestine conflict so Trump can have some "father-daughter time" ',
-    "Arrange for several dozen strippers to come to White House to commemorate International Women's Day",
-    "Subtlely suggest to 'Fox and Friends' to do a piece on how Trump's approval rating is higher than leukemia's",
-    "Order him some Taco Bell",
-    'Loudly quote "The Art of The Deal", and then remind him that he wrote it',
-    "Remind him of how it's good PR to have a women around whose pussy he won't try to grab ",
-    "Make up some ridiculous bullshit about wiretapped microwaves and put it on Twitter",
-    "Make lemonade out of lemons and comment him on his physique ",
-    "Wave shiny objects in front of his face and make cooing noises",
-    'Have a four-star general describe the latest weapon designs with "pew-pews" and "bangs"',
-    "Announce a National Men's day and have it held the day before and after International Women's Day",
-
+  journalist: [
+    {question: "Does the White House have any statement concerning recent allegations of collusion between Michael Flynn and Russian officials?",
+     wrongAnswers: ["We are currently looking into it", "We take this matter very seriously and are cooperating with authorities"],
+     correctAnswer: "MICROWAVES!"}
   ]
-
 };
 
 var game;
@@ -88,43 +70,137 @@ var game;
 
 window.onload = function(){
 
-//creates a new crisis and image when a solution is selectedCrisis
-  $('.options').click(function(){
-      $('#situation-image').empty();
-      game =  new TrumpGame(options);
-      this.situation = game.getCrisis();
+  var penalty = 0;  //time penalty for right or wrong answer
+  var correct = 0;  //correct answer of every instance
+
+//*****************  Start the game **********************
+
+  $('.btn-primary').click(function(){
+
+    createInstance();
+    $('#slider').val(String(MAXTRUMPTIMEVALUE));
+    setInterval(gameTimeCounter,1000);
+    setTimeout(journalistTimer,1000);
+    setInterval(trumpMeterTimer,1000);
+
+  }); //  $('.btn-primary').click(function()
 
 
-      var getSolutionsArray = [];
+//************************* Selecting (in)correct answer ******************
 
-      for (var i =0; i < this.situation.wrongAnswers.length; i++){
-      var wrongAnswersIndex = Math.floor(Math.random()* this.situation.wrongAnswers.length);
-      getSolutionsArray.push(this.situation.wrongAnswers[wrongAnswersIndex]);
+  $('.Option').click(function(){
+    var selectOption = $(this).text();
+
+  if (selectOption == correct){ //correct is from createInstance()
+      createInstance();
+      penalty = -10;
+    } else {
+      //user clicked on wrong answer
+      penalty = 10;
+    }
+
+  });
+
+
+//*****************************  Countup Timer ****************************
+  function gameTimeCounter(){
+      var currentTime = $('#time').text();
+
+      currentTime++;
+      $('#time').text(currentTime);
+
+    }// gameTimeCounter
+
+//******************* journalist alert code ***********************************************
+
+
+  var countDownJournalistTimer = 60;
+
+    function journalistTimer(){
+      countDownJournalistTimer--;
+      if (countDownJournalistTimer !== 0){
+      //alert('Hey a journalist has a question!');
       }
-      getSolutionsArray.push(this.situation.correctAnswer);
+      //generate random interval for next journalist prompt
+      setTimeout(journalistTimer, 1000* (Math.floor(Math.random()*60)));
+    } //journalistTimer()
 
 
-      this.situation.solution1 = getSolutionsArray[Math.floor(Math.random()* getSolutionsArray.length)];
-
-      this.situation.solution2 = getSolutionsArray[Math.floor(Math.random()* getSolutionsArray.length)];
-
-      this.situation.solution3 = getSolutionsArray[Math.floor(Math.random()* getSolutionsArray.length)];
-
-      var solution1 = this.situation.solution1;
-      var solution2 =   this.situation.solution2;
-      var solution3 = this.situation.solution3;
-
-    
-
-      $('#situations').html(this.situation.desc);
-      $('#situation-image').append('<img  src="images/' + this.situation.imgName + '"/>');
-      $('.option-one').html(this.situation.solution1);
-      $('.option-two').html(this.situation.solution2);
-      $('.option-three').html(this.situation.solution3);
-    });
+//*************** creates the countdown timer for the Trump Meter *********************
 
 
 
 
 
-};
+      function trumpMeterTimer(){
+        var countDownTimer = $('#slider').val();
+        if (penalty === 0){
+          countDownTimer--;
+        } else {
+          countDownTimer -= penalty;
+          penalty = 0;
+        }
+
+        if (countDownTimer > MAXTRUMPTIMEVALUE){
+          countDownTimer = MAXTRUMPTIMEVALUE;
+        }
+
+        if (countDownTimer > 0){
+
+          $('#slider').val(String(countDownTimer));
+
+        } else {
+          //alert('Trump just nuked North Korea');
+        }
+      }
+
+
+
+
+//************************ creates a new instance of the game *******************
+  function createInstance(){
+
+    $('#situation-image').empty();
+    game =  new TrumpGame(options);
+    this.situation = game.getCrisis();
+    correct = this.situation.correctAnswer;
+
+
+    //randomly generates the solutions for the selected crisis
+
+    var getSolutionsArray = [];
+
+
+    for (var i =0; i < this.situation.wrongAnswers.length; i++){
+    getSolutionsArray.push(this.situation.wrongAnswers[i]);
+    }
+    getSolutionsArray.push(this.situation.correctAnswer);
+
+
+    //randomly assigns a solution for each option button
+
+    var num1 = Math.floor(Math.random()* getSolutionsArray.length);
+    this.situation.solution1  = getSolutionsArray.splice(num1,1);
+
+
+    var num2 = Math.floor(Math.random()* getSolutionsArray.length);
+    this.situation.solution2 = getSolutionsArray.splice(num2,1);
+
+
+    var num3 = Math.floor(Math.random()* getSolutionsArray.length);
+    this.situation.solution3  = getSolutionsArray.splice(num3,1);
+
+
+    $('#situations').html(this.situation.desc);
+    $('#situation-image').append('<img  src="images/' + this.situation.imgName + '"/>');
+    $('.option-one').html(this.situation.solution1);
+    $('.option-two').html(this.situation.solution2);
+    $('.option-three').html(this.situation.solution3);
+
+  }//createInstance()
+
+
+
+
+
+}; //windows.onload
