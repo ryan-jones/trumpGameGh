@@ -81,7 +81,7 @@ window.onload = function(){
   var penalty = 0;  //time penalty for right or wrong answer
   var correct = 0;  //correct answer of every instance
 
-//*****************  Start the game **********************
+//***************************  Start the game **********************
 
   $('.btn-game').click(function(){
     $('.intro-page').remove();
@@ -110,6 +110,19 @@ window.onload = function(){
 
   });
 
+//************************* Selecting Journalist Answers *******************
+
+  $('.Option-journalist').click(function(){
+    var selectJournalistOption = $(this).text();
+
+  if (selectJournalistOption == correctJournalistAnswer){ //correct is from createInstance()
+    $('#journalist-page').css("visibility", "hidden");
+    $('.main-container').css("visibility", "visible");
+    journalistTimer();
+    }
+
+
+  });
 
 //*****************************  Countup Timer ****************************
   function gameTimeCounter(){
@@ -128,7 +141,9 @@ window.onload = function(){
     function journalistTimer(){
       countDownJournalistTimer--;
       if (countDownJournalistTimer !== 0){
-      //alert('Hey a journalist has a question!');
+        $('#journalist-page').css("visibility", "visible");
+        $('.main-container').css("visibility", "hidden");
+        getJournalistQuestion();
       }
       //generate random interval for next journalist prompt
       setTimeout(journalistTimer, 1000* (Math.floor(Math.random()*60)));
@@ -136,10 +151,6 @@ window.onload = function(){
 
 
 //*************** creates the countdown timer for the Trump Meter *********************
-
-
-
-
 
       function trumpMeterTimer(){
         var countDownTimer = $('#slider').val();
@@ -209,6 +220,40 @@ window.onload = function(){
   }//createInstance()
 
 
+//****************************  Creates a random journalist question ************************
+
+function getJournalistQuestion(){
+  //randomly generates the journalist question
+  var correctJournalistAnswer = this.journalist.correctAnswer;
+  var getJournalistArray = [];
+
+
+  for (var i =0; i < this.journalist.wrongAnswers.length; i++){
+  getJournalistArray.push(this.journalist.wrongAnswers[i]);
+  }
+  getJournalistArray.push(this.journalist.correctAnswer);
+
+
+  //randomly assigns a solution for each journalist option button
+
+  var num1 = Math.floor(Math.random()* getJournalistArray.length);
+  this.journalist.solution1  = getJournalistArray.splice(num1,1);
+
+
+  var num2 = Math.floor(Math.random()* getJournalistArray.length);
+  this.journalist.solution2 = getJournalistArray.splice(num2,1);
+
+
+  var num3 = Math.floor(Math.random()* getJournalistArray.length);
+  this.journalist.solution3  = getJournalistArray.splice(num3,1);
+
+
+  $('#journalist-questions').html(this.journalist.question);
+  $('#journalist-image').append('<img  src="images/' + this.journalist.imgName + '"/>');
+  $('.journalist-option-one').html(this.journalist.solution1);
+  $('.journalist-option-two').html(this.journalist.solution2);
+  $('.journalist-option-three').html(this.journalist.solution3);
+} //getJournalistQuestion
 
 
 

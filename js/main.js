@@ -51,10 +51,3 @@ TrumpGame.prototype.getCrisis = function(){
   return selectedCrisis;
 
 };
-
-TrumpGame.prototype.getSolutions = function(){
-
-
-
-};
-//building the timer
