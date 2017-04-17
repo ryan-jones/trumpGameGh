@@ -38,7 +38,7 @@ var options = {
       correctAnswer:   'Have a four-star general describe the latest weapon designs with "pew-pews" and "bangs"'},
 
     { desc:"Meliana Trump is only voted the 6th most beautiful First Lady in history in a recent online poll", imgName: "meliana.jpg",
-      wrongAnswers: ["Announce a National Men's day and have it held the day before and after International Women's Day", "Have Congress announce and investigation into vote rigging"],
+      wrongAnswers: ["Announce a National Men's day and have it held the day before and after International Women's Day", "Have Congress announce an investigation into vote rigging"],
       correctAnswer: "Remind him that there's still time to find a fourth wife"},
 
     { desc: "Obamacare reform fails to pass Congress after politicians discover people like having healthcare", imgName: "trumpcare.jpg",
@@ -70,13 +70,22 @@ var game;
 
 window.onload = function(){
 
+
+//*****************  move to introduction window ******************************
+
+  $('#btn-start').click(function(){
+    $('.start-page').remove();
+    $('.intro-page').css("visibility", "visible");
+  });
+
   var penalty = 0;  //time penalty for right or wrong answer
   var correct = 0;  //correct answer of every instance
 
 //*****************  Start the game **********************
 
-  $('.btn-primary').click(function(){
-
+  $('.btn-game').click(function(){
+    $('.intro-page').remove();
+    $('.main-container').css("visibility", "visible");
     createInstance();
     $('#slider').val(String(MAXTRUMPTIMEVALUE));
     setInterval(gameTimeCounter,1000);

@@ -6,14 +6,43 @@ body {
   background-size: cover;
 }
 
-.main-container {
-
+.start-page, .intro-page, .main-container {
   text-align: center;
   max-height: 50%;
-  margin: 1% 10%;
-  border: 1px solid black;
   background-color: 	#00008B;
   border-radius: 5px;
+  color: white;
+}
+
+.main-container, .intro-page {
+  visibility: hidden;
+  margin: 1% 10%;
+
+}
+
+.start-page {
+  visibility: visible;
+  margin: 0 10%;
+}
+
+
+#start-headline h1 {
+  margin: 1% 5% 0 5%;
+  font-size: 400%;
+}
+
+#start-image{
+  margin: 10% 0 0 0;
+}
+
+#maga-bar {
+  background-color: red;
+  margin: 2% 5% 5% 5%;
+  padding: 2%;
+}
+
+#maga-bar h2 {
+  font-size: 80px;
   color: white;
 }
 
@@ -23,6 +52,54 @@ body {
   background-color: white;
   margin: 0 0% 0 0%;
   border-radius: 5px;
+}
+
+.instructions {
+  margin: 5% 0;
+}
+
+.last-instruction {
+  margin: 5% 0 -5% 0;
+
+}
+
+
+.yellow-row h3{
+
+  margin-top: 5%;
+  color: yellow;
+}
+
+#rightarrow{
+  margin-left: 10%;
+  color: red;
+}
+
+#uparrow{
+  color:red;
+}
+
+.row-instructions {
+  background-color: white;
+}
+
+#example{
+  margin: 0 10% 5% 0;
+  color: black;
+}
+
+
+.examples-images img {
+  text-align: center;
+  max-height: 200px;
+  max-width: auto;
+}
+
+
+
+.emphasis, .selection-input{
+  background-color: red;
+  color: white;
 }
 
 img {
@@ -71,10 +148,11 @@ img {
   color: white;
   padding: 1%;
 }
+
+
 #situation-image > img{
   max-height:100%;
   max-width: 100%;
-
 
 }
 
@@ -83,10 +161,34 @@ img {
   max-height: 50%;
   max-width: 100%;
   margin: 0 10%;
-  
 
 }
 
 #time , #points {
   font-size: 20px;
+}
+
+.red-text {
+  color: red;
+  font-style: italic;
+  font-weight:bold;
+
+}
+
+.start-now{
+  margin:5%;
+}
+.selector-row{
+  margin: 5%;
+}
+.btn-game{
+  background-color: white;
+  color: red;
+  border: 1px solid red;
+}
+
+.btn-game:hover {
+  background-color: red;
+  color: white;
+  border: 1px solid white;
 }
