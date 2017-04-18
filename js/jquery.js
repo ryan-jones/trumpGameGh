@@ -127,7 +127,7 @@ window.onload = function(){
 
 function gameConditions(){
   createInstance();
-  $('#slider').val(String(MAXTRUMPTIMEVALUE));
+  $('#slider').val(MAXTRUMPTIMEVALUE);
   $('#points').val(0);
 
 
@@ -229,35 +229,42 @@ function approvalRating(){
 
       function trumpMeterTimer(){
         var currentRating = $('#points').text();
-        countDownTimer = $('#slider').val();
+        countDownTimer = parseInt($('#slider').val());
 
         if (penalty === 0){
           countDownTimer--;
-
-          if (countDownTimer < (MAXTRUMPTIMEVALUE * 1)){
-
+             console.log(countDownTimer)
+          if (countDownTimer > (MAXTRUMPTIMEVALUE * 0.80)){
+              console.log("test1");
             $('#trump-meter-img').empty();
             $('#trump-meter-img').append('<img src= "images/happy-trump.jpg" class="img-circle"/>');
             currentRating++;
             $('#points').text(currentRating);
           }
 
-          if (countDownTimer < (MAXTRUMPTIMEVALUE * 0.80)){
-
+          else if (countDownTimer > (MAXTRUMPTIMEVALUE * 0.50) && countDownTimer < MAXTRUMPTIMEVALUE * 0.80){
+              console.log("test2");
             $('#trump-meter-img').empty();
             $('#trump-meter-img').append('<img src= "images/unhappy-trump.jpg" class="img-circle"/>');
           }
 
-          if (countDownTimer < (MAXTRUMPTIMEVALUE * 0.50)){
 
+          else if (countDownTimer <= (MAXTRUMPTIMEVALUE * 0.50)){
+                console.log("test3");
             $('#trump-meter-img').empty();
             $('#trump-meter-img').append('<img src= "images/annoyed-trump.jpg" class="img-circle"/>');
-            currentRating -= 1;
+
+            if(currentRating <= 0){
+              currentRating = 0;
+            } else {
+            currentRating--;
+            }
             $('#points').text(currentRating);
+
           }
 
-          if (countDownTimer < (MAXTRUMPTIMEVALUE * 0.20)){
-
+          else if (countDownTimer < (MAXTRUMPTIMEVALUE * 0.20)){
+                console.log("test4");
             $('#trump-meter-img').empty();
             $('#trump-meter-img').append('<img src= "images/furious-trump.jpg" class="img-circle"/>');
           }
