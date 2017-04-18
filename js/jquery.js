@@ -58,12 +58,16 @@ var options = {
   ],
 
 
-  journalist: [
-    {question: "Does the White House have any statement concerning recent allegations of collusion between Michael Flynn and Russian officials?",
-     wrongAnswers: ["We are currently looking into it", "We take this matter very seriously and are cooperating with authorities"],
-     correctAnswer: "MICROWAVES!"}
-  ]
 };
+
+ var journalist = [
+ {question: "Does the White House have any statement concerning recent allegations of collusion between Michael Flynn and Russian officials?",
+  wrongAnswers: ["We are currently looking into it", "We take this matter very seriously and are cooperating with authorities"],
+  correctAnswer: "MICROWAVES!"}
+ //  {question:
+ //   wrongAnswers:
+ //   correctAnswer:}
+  ];
 
 var game;
 
@@ -75,21 +79,22 @@ window.onload = function(){
 
   $('#btn-start').click(function(){
     $('.start-page').remove();
-    $('.intro-page').css("visibility", "visible");
+    $('.intro-page').toggle();
   });
 
   var penalty = 0;  //time penalty for right or wrong answer
   var correct = 0;  //correct answer of every instance
+  var correctJournalistAnswer = 0; //correct answer of every journalist
 
 //***************************  Start the game **********************
 
   $('.btn-game').click(function(){
     $('.intro-page').remove();
-    $('.main-container').css("visibility", "visible");
+    $('.main-container').toggle();
     createInstance();
     $('#slider').val(String(MAXTRUMPTIMEVALUE));
     setInterval(gameTimeCounter,1000);
-    setTimeout(journalistTimer,1000);
+    setInterval(journalistTimer, 1000* (Math.floor(Math.random()*60)));
     setInterval(trumpMeterTimer,1000);
 
   }); //  $('.btn-primary').click(function()
@@ -115,10 +120,9 @@ window.onload = function(){
   $('.Option-journalist').click(function(){
     var selectJournalistOption = $(this).text();
 
-  if (selectJournalistOption == correctJournalistAnswer){ //correct is from createInstance()
-    $('#journalist-page').css("visibility", "hidden");
-    $('.main-container').css("visibility", "visible");
-    journalistTimer();
+  if (selectJournalistOption == correctJournalistAnswer){ //correct is from randomJournalistQuestion()
+    $('#journalist-page').toggle();
+    $('.main-container').toggle();
     }
 
 
@@ -141,12 +145,12 @@ window.onload = function(){
     function journalistTimer(){
       countDownJournalistTimer--;
       if (countDownJournalistTimer !== 0){
-        $('#journalist-page').css("visibility", "visible");
-        $('.main-container').css("visibility", "hidden");
-        getJournalistQuestion();
+        $('#journalist-page').toggle();
+        $('.main-container').toggle();
+        randomJournalistQuestion();
       }
       //generate random interval for next journalist prompt
-      setTimeout(journalistTimer, 1000* (Math.floor(Math.random()*60)));
+
     } //journalistTimer()
 
 
@@ -220,40 +224,81 @@ window.onload = function(){
   }//createInstance()
 
 
+  //************************** get random journalist question *********************
+
+  function getRandomJournalist(){
+
+    var journalistIndex = Math.floor(Math.random()* journalist.length);
+    return journalist[journalistIndex];
+
+  }
+
+  //*************************  set random journalist question ************************
+
+  function randomJournalistQuestion(){
+    var journalist = getRandomJournalist();
+    var getJournalistArray = [];
+    correctJournalistAnswer = journalist.correctAnswer;
+
+
+      for (var i =0; i < journalist.wrongAnswers.length; i++){
+      getJournalistArray.push(journalist.wrongAnswers[i]);
+      }
+      getJournalistArray.push(journalist.correctAnswer);
+
+
+      //randomly assigns a solution for each journalist option button
+
+      var num1 = Math.floor(Math.random()* getJournalistArray.length);
+      journalist.solution1  = getJournalistArray.splice(num1,1);
+
+
+      var num2 = Math.floor(Math.random()* getJournalistArray.length);
+      journalist.solution2 = getJournalistArray.splice(num2,1);
+
+
+      var num3 = Math.floor(Math.random()* getJournalistArray.length);
+      journalist.solution3  = getJournalistArray.splice(num3,1);
+
+
+
+      $('#journalist-questions').html(journalist.question);
+      $('#journalist-image').append('<img  src="images/' + journalist.imgName + '"/>');
+      $('.journalist-option-one').html(journalist.solution1);
+      $('.journalist-option-two').html(journalist.solution2);
+      $('.journalist-option-three').html(journalist.solution3);
+
+
+  }
 //****************************  Creates a random journalist question ************************
 
-function getJournalistQuestion(){
-  //randomly generates the journalist question
-  var correctJournalistAnswer = this.journalist.correctAnswer;
-  var getJournalistArray = [];
+// function askJournalistQuestion(){
+//   //randomly generates the journalist question
+//   var correctJournalistAnswer = this.journalist.correctAnswer;
+//   var getJournalistArray = [];
+//
+//
+//   for (var i =0; i < this.journalist.wrongAnswers.length; i++){
+//   getJournalistArray.push(this.journalist.wrongAnswers[i]);
+//   }
+//   getJournalistArray.push(this.journalist.correctAnswer);
+//
+//
+//   //randomly assigns a solution for each journalist option button
+//
+//   var num1 = Math.floor(Math.random()* getJournalistArray.length);
+//   this.journalist.solution1  = getJournalistArray.splice(num1,1);
+//
+//
+//   var num2 = Math.floor(Math.random()* getJournalistArray.length);
+//   this.journalist.solution2 = getJournalistArray.splice(num2,1);
+//
+//
+//   var num3 = Math.floor(Math.random()* getJournalistArray.length);
+//   this.journalist.solution3  = getJournalistArray.splice(num3,1);
 
 
-  for (var i =0; i < this.journalist.wrongAnswers.length; i++){
-  getJournalistArray.push(this.journalist.wrongAnswers[i]);
-  }
-  getJournalistArray.push(this.journalist.correctAnswer);
 
-
-  //randomly assigns a solution for each journalist option button
-
-  var num1 = Math.floor(Math.random()* getJournalistArray.length);
-  this.journalist.solution1  = getJournalistArray.splice(num1,1);
-
-
-  var num2 = Math.floor(Math.random()* getJournalistArray.length);
-  this.journalist.solution2 = getJournalistArray.splice(num2,1);
-
-
-  var num3 = Math.floor(Math.random()* getJournalistArray.length);
-  this.journalist.solution3  = getJournalistArray.splice(num3,1);
-
-
-  $('#journalist-questions').html(this.journalist.question);
-  $('#journalist-image').append('<img  src="images/' + this.journalist.imgName + '"/>');
-  $('.journalist-option-one').html(this.journalist.solution1);
-  $('.journalist-option-two').html(this.journalist.solution2);
-  $('.journalist-option-three').html(this.journalist.solution3);
-} //getJournalistQuestion
 
 
 
