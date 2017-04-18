@@ -51,10 +51,12 @@ body {
 #trump-headline {
   border: 1px solid black;
   max-width: 100%;
-  background-color: white;
+  background-color: #00008B;
   margin: 0 0% 0 0%;
   border-radius: 5px;
 }
+
+
 
 #intro-headline  h1, #opportunity {
   margin-top: 5%;
@@ -113,6 +115,7 @@ body {
 
 #game-body{
   border:1px solid white;
+  background-color: white;
 }
 
 img {
