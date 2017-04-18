@@ -6,7 +6,7 @@ body {
   background-size: cover;
 }
 
-.start-page, .intro-page, .main-container {
+.start-page, .intro-page, .main-container, #twitter-page {
   text-align: center;
   max-height: 50%;
   background-color: 	#00008B;
@@ -14,11 +14,13 @@ body {
   color: white;
 }
 
-.main-container, .intro-page , #journalist-page, #twitter-page{
-  display:none;
+.main-container, .intro-page , #journalist-page{
+  display: none;
   margin: 1% 10%;
 
 }
+
+
 
 .start-page {
   visibility: visible;
@@ -107,6 +109,10 @@ body {
 .emphasis, .selection-input{
   background-color: red;
   color: white;
+}
+
+#game-body{
+  border:1px solid white;
 }
 
 img {
@@ -198,3 +204,20 @@ img {
   color: white;
   border: 1px solid white;
 }
+
+ #twitter-page {
+   visibility: hidden;
+ }
+
+ #smirk img{
+   margin-top: 5%;
+
+ }
+
+ #twitter-image{
+   max-width: 100%;
+   max-height: 100%;
+ }
+
+ #smirk{
+ }

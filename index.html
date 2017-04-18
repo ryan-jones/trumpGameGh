@@ -131,81 +131,89 @@
       <div class="row main-container">
 
         <div class="row" id="trump-headline" >
-          <div class="col-md-4"><span><img src = "images/happy-trump.jpg" class="img-circle"/></span></div>
-          <div class="col-md-8">
+          <div class="col-md-4"><span><img src = "images/happy-trump.jpg" class="img-circle"/></span>
+            <input id="slider" type="range"
+               min="0" max="60" step="1" value="60"/>
+          </div> <!--happ-trump.jpg-->
+
+          <div class="col-md-8" id="game-body">
             <!-- <div class="progress">
               <div id="slider" class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="60" style="width: MAXTRUMPTIMEVALUE;">
                 <span class="sr-only">100% Complete</span>
               </div>
             </div> -->
-            <input id="slider" type="range"
-               min="0" max="60" step="1" value="60"/>
-         </div>
-        </div> <!-- trump-headline-->
 
 
-        <div class="second-container">
-          <div class="row">
-            <div class="col-md-12"><h3 id="situations">Situation</h3>
-              <div id="situation-image"></div>
+
+            <div class="second-container">
+              <div class="row">
+                <div class="col-md-12"><h3 id="situations">Situation</h3>
+                  <div id="situation-image"></div>
+                </div>
+              </div>
+              <div class="row"></div>
+              <div class="row options">
+                <div class="col-md-12 Option option-one">option 1</div>
+              </div>
+              <div class="row options">
+                <div class="col-md-12 Option option-two">option 2</div>
+              </div>
+              <div class="row options">
+                <div class="col-md-12 Option option-three">option 3</div>
+              </div>
+            </div> <!--second-container -->
+
+            <div class="row">
+              <div class="col-md-6"><h4>Timer: <span id ="time">0</span><span>  seconds</span></h4></div>
+              <div class="col-md-6"><h4>Points: <span id ="points">0</span></h4></div>
             </div>
-          </div>
-          <div class="row"></div>
+        </div> <!-- game-body-->
+       </div> <!-- trump-headline-->
 
-          <div class="row options">
+        </div> <!-- main-container-->
 
-            <div class="col-md-12 Option option-one">option 1</div>
-
-          </div>
-
-          <div class="row options">
-
-            <div class="col-md-12 Option option-two">option 2</div>
-
-          </div>
-          <div class="row options">
-
-            <div class="col-md-12 Option option-three">option 3</div>
-
-          </div>
-
-        </div> <!--second-container -->
-
-        <div class="row">
-          <div class="col-md-6"><h4>Timer: <span id ="time">0</span><span>  seconds</span></h4></div>
-          <div class="col-md-6"><h4>Points: <span id ="points">0</span></h4></div>
-        </div>
-      </div> <!-- main-container-->
-    </section> <!--container-fluid -->
 
 <!-- ****************************** Journalist window *********************** -->
 
-    <div class="second-container" id="journalist-page">
-      <div class="row">
-        <div class="col-md-12"><h3 id="journalist-questions">Situation</h3>
-          <div id="journalist-image"></div>
+      <div class="second-container" id="journalist-page">
+        <div class="row">
+          <div class="col-md-12"><h3 id="journalist-questions">Situation</h3>
+            <div id="journalist-image"></div>
+          </div>
+        </div>
+        <div class="row"></div>
+
+        <div class="row options">
+
+          <div class="col-md-12 Option-journalist journalist-option-one">option 1</div>
+
+        </div>
+
+        <div class="row options">
+
+          <div class="col-md-12 Option-journalist journalist-option-two">option 2</div>
+
+        </div>
+        <div class="row options">
+
+          <div class="col-md-12 Option-journalist journalist-option-three">option 3</div>
+
+        </div>
+
+      </div> <!--second-container -->
+
+  <!-- ***************************** Twitter Page ************************ -->
+
+      <div class="second-container" id="twitter-page">
+        <div class="row">
+          <div class="col-md-12" id="game-over"><h3 >Great work, son. See your way out</h3></div>
+        </div>
+        <div class ="row">
+            <div class="col-md-5" id="smirk"><span><img src = "images/smirk-donald.jpg"/></span></div>
+            <div class="col-md-7" id="twitter-image"></div>
         </div>
       </div>
-      <div class="row"></div>
-
-      <div class="row options">
-
-        <div class="col-md-12 Option-journalist journalist-option-one">option 1</div>
-
-      </div>
-
-      <div class="row options">
-
-        <div class="col-md-12 Option-journalist journalist-option-two">option 2</div>
-
-      </div>
-      <div class="row options">
-
-        <div class="col-md-12 Option-journalist journalist-option-three">option 3</div>
-
-      </div>
-
-    </div> <!--second-container -->
+    </section> <!--container-fluid -->
     <script
     src="http://code.jquery.com/jquery-3.2.1.min.js"
     integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
