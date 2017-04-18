@@ -141,10 +141,15 @@ img {
 
 }
 
+#notifications{
+  margin-top: 10%;
+}
+
 #slider {
   margin-top: 15%;
   margin-right: 15%;
 }
+
 
 .second-container {
   background-color: white;
@@ -154,9 +159,6 @@ img {
   border-radius: 5px;
 }
 
-.second-container h3 {
-
-}
 
 .options {
   background-color: white;

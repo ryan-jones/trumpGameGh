@@ -87,6 +87,8 @@ var options = {
  //   correctAnswer:}
   ];
 
+var notifications = ["Coal regulations rolled back. Miners can work again!", "Dakota pipeline complete! Indian tears fuel job growth", "Climate change officially doesn't exist!", "Border wall built on credit!", "We locked her up!", "Consumers goods only increased 20% after import tax!" ];
+
 var game;
 
 
@@ -121,16 +123,19 @@ window.onload = function(){
     gameConditions();
   });
 
-//************************** creating game conditions
+//************************** creating game conditions****************************
 
 function gameConditions(){
   createInstance();
   $('#slider').val(String(MAXTRUMPTIMEVALUE));
+  $('#points').val(0);
 
 
   setInterval(gameTimeCounter,1000);
   setInterval(trumpMeterTimer,1000);
+  setInterval(approvalRating, 1000);
   setTimeout(journalistTimer, 1000* (Math.floor(Math.random()*60)));
+  setInterval(noteAdder, 20000);
 }
 
 //************************* Selecting (in)correct answer ******************
@@ -159,14 +164,46 @@ function gameConditions(){
     }
   });
 
-//*****************************  Countup Timer ****************************
+//************************** creating notifications *******************************
+
+function noteAdder(){
+
+  var noteIndex = Math.floor(Math.random()*notifications.length);
+  var Note = notifications.splice(noteIndex,1);
+
+  $('#notifications').append('<div class="notes"><h4>' + Note + '</h4></div>');
+}
+//*****************************  Countup Timer ************************************
   function gameTimeCounter(){
       var currentTime = $('#time').text();
 
       currentTime++;
       $('#time').text(currentTime);
 
+
+      // if (currentTime == 10){
+      //   console.log(currentTime);
+      //   $('#notifications').append('<div class="notes"><h4> Coal regulations rolled back. Miners can work again!</h4></div>');
+      // }
+      // if (currentTime == 40){
+      //   console.log(currentTime);
+      //   $('#notifications').append('<div class="notes"><h4> Dakota pipeline complete! </h4></div>');
+      // }
+      // if (currentTime == 70){
+      //   console.log(currentTime);
+      //   $('#notifications').append('<div class="notes"><h4> Muslim ban approved by Supreme Court! </h4></div>');
+      // }
+
     }// gameTimeCounter
+
+
+//***************************** Approval Rating **************************
+
+function approvalRating(){
+
+
+
+}
 
 //******************* journalist Timer ***********************************************
 
@@ -191,15 +228,18 @@ function gameConditions(){
 //*************** creates the countdown timer for the Trump Meter *********************
 
       function trumpMeterTimer(){
+        var currentRating = $('#points').text();
         countDownTimer = $('#slider').val();
+
         if (penalty === 0){
           countDownTimer--;
-
 
           if (countDownTimer < (MAXTRUMPTIMEVALUE * 1)){
 
             $('#trump-meter-img').empty();
             $('#trump-meter-img').append('<img src= "images/happy-trump.jpg" class="img-circle"/>');
+            currentRating++;
+            $('#points').text(currentRating);
           }
 
           if (countDownTimer < (MAXTRUMPTIMEVALUE * 0.80)){
@@ -209,14 +249,14 @@ function gameConditions(){
           }
 
           if (countDownTimer < (MAXTRUMPTIMEVALUE * 0.50)){
-            console.log("50",countDownTimer);
 
             $('#trump-meter-img').empty();
             $('#trump-meter-img').append('<img src= "images/annoyed-trump.jpg" class="img-circle"/>');
+            currentRating -= 1;
+            $('#points').text(currentRating);
           }
 
           if (countDownTimer < (MAXTRUMPTIMEVALUE * 0.20)){
-            console.log("20",countDownTimer);
 
             $('#trump-meter-img').empty();
             $('#trump-meter-img').append('<img src= "images/furious-trump.jpg" class="img-circle"/>');
@@ -226,10 +266,12 @@ function gameConditions(){
           penalty = 0;
         }
 
+  //***************** resets the clock **************************
         if (countDownTimer > MAXTRUMPTIMEVALUE){
           countDownTimer = MAXTRUMPTIMEVALUE;
         }
 
+  //***************** makes sure the slider's value equals the timer's *********
         if (countDownTimer > 0){
 
           $('#slider').val(String(countDownTimer));
@@ -238,6 +280,7 @@ function gameConditions(){
           $('.main-container').remove();
           $('#twitter-page').css("visibility", "visible");
         }
+
       }
 
 
