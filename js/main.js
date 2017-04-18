@@ -10,7 +10,8 @@ var TrumpGame = function(options){
   this.solution1 = options.crisis.wrongAnswers;
   this.solution2 = options.crisis.wrongAnswers;
   this.solution3 = options.crisis.correctAnswer;
-  this.started = false;
+  this.journalist = options.journalist;
+  // this.started = false;
   this.options = options;
 };
 
@@ -19,7 +20,7 @@ var TrumpGame = function(options){
 
 TrumpGame.prototype._getRandomCrisis = function(){
 
-  var crisisIndex = Math.floor(Math.random()* this.options.crisis.length);
+  var crisisIndex = Math.floor(Math.random()* (this.options.crisis.length-1));
   return this.options.crisis[crisisIndex];
 
 };
@@ -30,24 +31,6 @@ TrumpGame.prototype.getCrisis = function(){
 
   var selectedCrisis = this._getRandomCrisis();
 
-
-  var getSolutionsArray = [];
-  var selectedSolutionsArray = [];
-
-  for (var i =0; i < selectedCrisis.wrongAnswers.length; i++){
-  var wrongAnswersIndex = Math.floor(Math.random()* selectedCrisis.wrongAnswers.length);
-  getSolutionsArray.push(selectedCrisis.wrongAnswers[wrongAnswersIndex]);
-  }
-  getSolutionsArray.push(selectedCrisis.correctAnswer);
-
-  var solutionOneIndex = Math.floor(Math.random()* getSolutionsArray.length);
-  this.solution1 = selectedSolutionsArray.push(getSolutionsArray[solutionOneIndex]);
-
-  var solutionTwoIndex = Math.floor(Math.random()* getSolutionsArray.length);
-  this.solution2 = selectedSolutionsArray.push(getSolutionsArray[solutionTwoIndex]);
-
-  var solutionThreeIndex = Math.floor(Math.random()* getSolutionsArray.length);
-  this.solution3 = selectedSolutionsArray.push(getSolutionsArray[solutionTwoIndex]);
   return selectedCrisis;
 
 };

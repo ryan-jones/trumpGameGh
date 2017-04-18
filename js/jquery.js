@@ -1,5 +1,6 @@
 const MAXTRUMPTIMEVALUE = 60;
 
+var sliderVal = MAXTRUMPTIMEVALUE
 var options = {
 
   character: ["Kellyanne Conway", "Jared Kushner", "Reince Priebus"],
@@ -107,9 +108,13 @@ window.onload = function(){
     $('.main-container').toggle();
     createInstance();
     $('#slider').val(String(MAXTRUMPTIMEVALUE));
+
+
     setInterval(gameTimeCounter,1000);
     setInterval(trumpMeterTimer,1000);
     setTimeout(journalistTimer, 1000* (Math.floor(Math.random()*60)));
+
+
 
   }); //  $('.btn-primary').click(function()
 
@@ -172,9 +177,36 @@ window.onload = function(){
 //*************** creates the countdown timer for the Trump Meter *********************
 
       function trumpMeterTimer(){
-        var countDownTimer = $('#slider').val();
+        countDownTimer = $('#slider').val();
         if (penalty === 0){
           countDownTimer--;
+
+
+          if (countDownTimer < (MAXTRUMPTIMEVALUE * 1)){
+            
+            $('#trump-meter-img').empty();
+            $('#trump-meter-img').append('<img src= "images/happy-trump.jpg" class="img-circle"/>');
+          }
+
+          if (countDownTimer < (MAXTRUMPTIMEVALUE * 0.80)){
+
+            $('#trump-meter-img').empty();
+            $('#trump-meter-img').append('<img src= "images/unhappy-trump.jpg" class="img-circle"/>');
+          }
+
+          if (countDownTimer < (MAXTRUMPTIMEVALUE * 0.50)){
+            console.log("50",countDownTimer);
+
+            $('#trump-meter-img').empty();
+            $('#trump-meter-img').append('<img src= "images/annoyed-trump.jpg" class="img-circle"/>');
+          }
+
+          if (countDownTimer < (MAXTRUMPTIMEVALUE * 0.20)){
+            console.log("20",countDownTimer);
+
+            $('#trump-meter-img').empty();
+            $('#trump-meter-img').append('<img src= "images/furious-trump.jpg" class="img-circle"/>');
+          }
         } else {
           countDownTimer -= penalty;
           penalty = 0;
@@ -196,8 +228,8 @@ window.onload = function(){
 
 
 
-
 //************************ creates a new instance of the game *******************
+
   function createInstance(){
 
     $('#situation-image').empty();
