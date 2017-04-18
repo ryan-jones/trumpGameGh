@@ -75,9 +75,13 @@ var options = {
 };
 
  var journalist = [
- {question: "Does the White House have any statement concerning recent allegations of collusion between Michael Flynn and Russian officials?",
+ {question: "Does the White House have any statement concerning recent allegations of collusion between Michael Flynn and Russian officials?", imgName: "megyn-kelly.jpg",
   wrongAnswers: ["We are currently looking into it", "We take this matter very seriously and are cooperating with authorities"],
-  correctAnswer: "MICROWAVES!"}
+  correctAnswer: "MICROWAVES!"},
+
+  {question: "How does the president intend to make Mexico pay for the wall?", imgName: "jake-tapper.jpg",
+   wrongAnswers: ["Uh, taxes on tequila and oversized hats", "Ransom illegal immigrants to their families, of course"],
+   correctAnswer: "The president never said that he would make Mexico build the wall"}
  //  {question:
  //   wrongAnswers:
  //   correctAnswer:}
@@ -106,18 +110,28 @@ window.onload = function(){
   $('.btn-game').click(function(){
     $('.intro-page').remove();
     $('.main-container').toggle();
-    createInstance();
-    $('#slider').val(String(MAXTRUMPTIMEVALUE));
-
-
-    setInterval(gameTimeCounter,1000);
-    setInterval(trumpMeterTimer,1000);
-    setTimeout(journalistTimer, 1000* (Math.floor(Math.random()*60)));
-
-
+    gameConditions();
 
   }); //  $('.btn-primary').click(function()
 
+
+  $('btn-new-game').click(function(){
+    $('#twitter-page').remove();
+    $('.main-container').toggle();
+    gameConditions();
+  });
+
+//************************** creating game conditions
+
+function gameConditions(){
+  createInstance();
+  $('#slider').val(String(MAXTRUMPTIMEVALUE));
+
+
+  setInterval(gameTimeCounter,1000);
+  setInterval(trumpMeterTimer,1000);
+  setTimeout(journalistTimer, 1000* (Math.floor(Math.random()*60)));
+}
 
 //************************* Selecting (in)correct answer ******************
 
@@ -154,7 +168,7 @@ window.onload = function(){
 
     }// gameTimeCounter
 
-//******************* journalist alert code ***********************************************
+//******************* journalist Timer ***********************************************
 
 
   var countDownJournalistTimer = 60;
@@ -183,7 +197,7 @@ window.onload = function(){
 
 
           if (countDownTimer < (MAXTRUMPTIMEVALUE * 1)){
-            
+
             $('#trump-meter-img').empty();
             $('#trump-meter-img').append('<img src= "images/happy-trump.jpg" class="img-circle"/>');
           }
@@ -320,32 +334,6 @@ window.onload = function(){
 
 
   }
-//****************************  Creates a random journalist question ************************
-
-// function askJournalistQuestion(){
-//   //randomly generates the journalist question
-//   var correctJournalistAnswer = this.journalist.correctAnswer;
-//   var getJournalistArray = [];
-//
-//
-//   for (var i =0; i < this.journalist.wrongAnswers.length; i++){
-//   getJournalistArray.push(this.journalist.wrongAnswers[i]);
-//   }
-//   getJournalistArray.push(this.journalist.correctAnswer);
-//
-//
-//   //randomly assigns a solution for each journalist option button
-//
-//   var num1 = Math.floor(Math.random()* getJournalistArray.length);
-//   this.journalist.solution1  = getJournalistArray.splice(num1,1);
-//
-//
-//   var num2 = Math.floor(Math.random()* getJournalistArray.length);
-//   this.journalist.solution2 = getJournalistArray.splice(num2,1);
-//
-//
-//   var num3 = Math.floor(Math.random()* getJournalistArray.length);
-//   this.journalist.solution3  = getJournalistArray.splice(num3,1);
 
 
 
