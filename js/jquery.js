@@ -91,8 +91,16 @@ var notifications = ["Coal regulations rolled back. Miners can work again!", "Da
 
 var game;
 
+var clearIntervalTimer;
+var clearJournalist;
+var clearTrumpTimer;
+var clearApproval;
+var clearGameTime;
 
 window.onload = function(){
+
+
+
 
   // $('.audio').append('<audio autoplay><source src="images/03 America, F__k Yeah.mp3"></audio>');
 
@@ -108,6 +116,7 @@ window.onload = function(){
   var correct = 0;  //correct answer of every instance
   var correctJournalistAnswer = 0; //correct answer of every journalist
   var countDownTimer = 0;
+
 
 //***************************  Start the game **********************
 
@@ -135,11 +144,22 @@ function gameConditions(){
   $('#points').val(0);
 
 
-  setInterval(gameTimeCounter,1000);
-  setInterval(trumpMeterTimer,1000);
-  setInterval(approvalRating, 1000);
-  setTimeout(journalistTimer, 1000* (Math.floor(Math.random()*60)));
-  setInterval(noteAdder, 20000);
+
+ clearGameTime = setInterval(gameTimeCounter,1000);
+  clearTrumpTimer = setInterval(trumpMeterTimer,1000);
+  clearApproval = setInterval(approvalRating, 1000);
+  clearJournalist = setTimeout(journalistTimer, 1000* (Math.floor(Math.random()*60)));
+  clearIntervalTimer = setInterval(noteAdder, 5000);
+}
+
+function endGame(){
+  console.log("cleartime", clearIntervalTimer);
+  clearInterval(clearIntervalTimer);
+  clearInterval(clearGameTime);
+  clearInterval(clearApproval);
+  clearInterval(clearJournalist);
+  clearInterval(clearTrumpTimer);
+
 }
 
 //************************* Selecting (in)correct answer ******************
@@ -172,11 +192,14 @@ function gameConditions(){
 //************************** creating notifications *******************************
 
 function noteAdder(){
-
   var noteIndex = Math.floor(Math.random()*notifications.length);
   var Note = notifications.splice(noteIndex,1);
 
-  $('#notifications').append('<div class="notes"><h4>' + Note + '</h4></div>');
+
+  $('.main-container').notify(Note, "success");
+  $('#accomplishments').append('<div><h4>' + Note + '</h4></div>');
+
+
 }
 //*****************************  Countup Timer ************************************
   function gameTimeCounter(){
@@ -289,7 +312,7 @@ function approvalRating(){
           $('#slider').val(String(countDownTimer));
 
         } else {
-
+          endGame();
           $('.main-container').toggle();
           $('#approval-rating').text(finalRating);
           $('#twitter-page').css("visibility", "visible");
