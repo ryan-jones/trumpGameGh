@@ -95,11 +95,13 @@ var game;
 window.onload = function(){
 
   // $('.audio').append('<audio autoplay><source src="images/03 America, F__k Yeah.mp3"></audio>');
+
 //*****************  move to introduction window ******************************
 
   $('#btn-start').click(function(){
     $('.start-page').remove();
     $('.intro-page').toggle();
+    window.scrollTo(0,0);
   });
 
   var penalty = 0;  //time penalty for right or wrong answer
@@ -113,16 +115,16 @@ window.onload = function(){
     $('.intro-page').remove();
     $('.main-container').toggle();
     gameConditions();
+    window.scrollTo(0,0);
 
   }); //  $('.btn-primary').click(function()
 
 
-  $('btn-new-game').click(function(){
-    var twitterPage = $('#twitter-page');
-    if (twitterPage.is(':visible')){
-      twitterPage.is(':hidden');
-    }    $('.main-container').toggle();
+  $('.btn-new-game').click(function(){
+    $('#twitter-page').remove();
+    $('.main-container').toggle();
     gameConditions();
+    window.scrollTo(0,0);
   });
 
 //************************** creating game conditions****************************
@@ -288,7 +290,7 @@ function approvalRating(){
 
         } else {
 
-          $('.main-container').remove();
+          $('.main-container').toggle();
           $('#approval-rating').text(finalRating);
           $('#twitter-page').css("visibility", "visible");
         }
