@@ -4,6 +4,16 @@ body {
   background-image:  url("../images/burningflag.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+#trumpdance{
+  margin-left: 15%;
+}
+.gif {
+  max-width: 100%;
+  max-height: 100%;
 }
 
 
@@ -13,6 +23,7 @@ body {
   background-color: 	#00008B;
   border-radius: 5px;
   color: white;
+
 }
 
 .intro-page , #journalist-page{
@@ -23,11 +34,18 @@ body {
 
 .main-container{
   display: none;
-  max-height: 100%;
-  max-width: 100%;
+  max-height: inherit;
+  max-width: inherit;
   margin-left: 0%;
 }
 
+.myCarousel{
+  text-align: center;
+}
+
+.wrestle{
+  display:none;
+}
 
 .start-page {
   visibility: visible;
@@ -36,17 +54,17 @@ body {
 
 
 #start-headline h1 {
-  margin: 1% 5% 0 5%;
-  font-size: 300%;
+  margin: 1% 5% 0% 5%;
+  font-size: 70px;
 }
 
 #start-image{
-  /*margin: 10% 0 0 0;*/
+  margin: 7% 0 0 0;
 }
 
 #maga-bar {
   background-color: white;
-  margin: 2% 5% 5% 5%;
+  margin: 0% 5% 5% 5%;
   padding: 0%;
 }
 
@@ -66,7 +84,7 @@ body {
 
 #trump-headline {
   border: 1px solid black;
-  max-width: 100%;
+  max-height: 100% ;
   background-color: #00008B;
   margin: 0 0% 0 0%;
   border-radius: 5px;
@@ -135,12 +153,11 @@ body {
 }
 
 img {
-  max-height:auto%;
+  max-height:100%;
   max-width:100%;
   padding: 5%
-
-
 }
+
 
 #modal-div{
   display: none;
@@ -154,13 +171,19 @@ img {
 }
 
 #slider {
-  margin-top: 15%;
-  margin-right: 15%;
+  margin: 70% 0% 10% 0%;
+
+  -ms-transform: rotate(90deg); /* IE 9 */
+  -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
+  transform: rotate(90deg);
+
 }
 
 
 .second-container {
   background-color: white;
+
+  height: 100%;
   color: black;
   margin: 0% 5% 0 5%;
   padding-bottom: 5%;
@@ -203,12 +226,13 @@ img {
 
 #journalist-image{
   text-align: center;
+  margin-top: -5%;
 }
 
 #situation-image > img{
   max-height:100%;
   max-width: 100%;
-
+  margin-top: -5%;
 }
 
 #situation-image {
@@ -221,6 +245,11 @@ img {
 
 #time , #points {
   font-size: 20px;
+  padding: 10% 0 0 0;
+}
+
+.timepoints{
+  /*padding: 10% 0 5% 0;*/
 }
 
 .red-text {
