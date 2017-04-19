@@ -1,6 +1,6 @@
 const MAXTRUMPTIMEVALUE = 60;
 
-var sliderVal = MAXTRUMPTIMEVALUE
+var sliderVal = MAXTRUMPTIMEVALUE;
 var options = {
 
   character: ["Kellyanne Conway", "Jared Kushner", "Reince Priebus"],
@@ -68,7 +68,7 @@ var options = {
     { desc: "Ivanka Trump forgot to close the door while changing", imgName: "ivanka.jpg ",
       wrongAnswer: ["ohshitohshitohshitohshitohshitohshit", "Shoot her! Shoooooooot her!"],
       correctAnswer: "Take a bullet for America and jump in the way",
-      tweet: "grab-kitty.jpg"},
+      tweet: "grab-kitty.jpg"}
   ],
 
 
@@ -94,7 +94,7 @@ var game;
 
 window.onload = function(){
 
-
+  // $('.audio').append('<audio autoplay><source src="images/03 America, F__k Yeah.mp3"></audio>');
 //*****************  move to introduction window ******************************
 
   $('#btn-start').click(function(){
@@ -118,8 +118,10 @@ window.onload = function(){
 
 
   $('btn-new-game').click(function(){
-    $('#twitter-page').remove();
-    $('.main-container').toggle();
+    var twitterPage = $('#twitter-page');
+    if (twitterPage.is(':visible')){
+      twitterPage.is(':hidden');
+    }    $('.main-container').toggle();
     gameConditions();
   });
 
@@ -144,6 +146,7 @@ function gameConditions(){
     var selectOption = $(this).text();
 
   if (selectOption == correct){ //correct is from createInstance()
+    $('#situation-image').empty();
       createInstance();
       penalty = -10;
     } else {
@@ -180,20 +183,6 @@ function noteAdder(){
       currentTime++;
       $('#time').text(currentTime);
 
-
-      // if (currentTime == 10){
-      //   console.log(currentTime);
-      //   $('#notifications').append('<div class="notes"><h4> Coal regulations rolled back. Miners can work again!</h4></div>');
-      // }
-      // if (currentTime == 40){
-      //   console.log(currentTime);
-      //   $('#notifications').append('<div class="notes"><h4> Dakota pipeline complete! </h4></div>');
-      // }
-      // if (currentTime == 70){
-      //   console.log(currentTime);
-      //   $('#notifications').append('<div class="notes"><h4> Muslim ban approved by Supreme Court! </h4></div>');
-      // }
-
     }// gameTimeCounter
 
 
@@ -228,14 +217,22 @@ function approvalRating(){
 //*************** creates the countdown timer for the Trump Meter *********************
 
       function trumpMeterTimer(){
-        var currentRating = $('#points').text();
         countDownTimer = parseInt($('#slider').val());
+        var finalRating = 0;
+        var currentRating = 0;
+
+        if(currentRating <= 0){
+          currentRating = 0;
+          currentRating = $('#points').text();
+        } else {
+          currentRating = $('#points').text();
+        }
+
 
         if (penalty === 0){
           countDownTimer--;
-             console.log(countDownTimer)
+
           if (countDownTimer > (MAXTRUMPTIMEVALUE * 0.80)){
-              console.log("test1");
             $('#trump-meter-img').empty();
             $('#trump-meter-img').append('<img src= "images/happy-trump.jpg" class="img-circle"/>');
             currentRating++;
@@ -243,35 +240,41 @@ function approvalRating(){
           }
 
           else if (countDownTimer > (MAXTRUMPTIMEVALUE * 0.50) && countDownTimer < MAXTRUMPTIMEVALUE * 0.80){
-              console.log("test2");
             $('#trump-meter-img').empty();
             $('#trump-meter-img').append('<img src= "images/unhappy-trump.jpg" class="img-circle"/>');
+            currentRating++;
+            $('#points').text(currentRating);
           }
 
 
-          else if (countDownTimer <= (MAXTRUMPTIMEVALUE * 0.50)){
-                console.log("test3");
+          else if (countDownTimer >(MAXTRUMPTIMEVALUE * 0.20) && countDownTimer <= (MAXTRUMPTIMEVALUE * 0.50)){
             $('#trump-meter-img').empty();
             $('#trump-meter-img').append('<img src= "images/annoyed-trump.jpg" class="img-circle"/>');
-
-            if(currentRating <= 0){
-              currentRating = 0;
-            } else {
             currentRating--;
+
+            if (currentRating <=0){
+              currentRating =0;
+              $('#points').text(currentRating);
+            } else {
+              $('#points').text(currentRating);
             }
-            $('#points').text(currentRating);
+          }
+
+          else if (countDownTimer <= (MAXTRUMPTIMEVALUE * 0.20)){
+            $('#trump-meter-img').empty();
+            $('#trump-meter-img').append('<img src= "images/furious-trump.jpg" class="img-circle"/>');
 
           }
 
-          else if (countDownTimer < (MAXTRUMPTIMEVALUE * 0.20)){
-                console.log("test4");
-            $('#trump-meter-img').empty();
-            $('#trump-meter-img').append('<img src= "images/furious-trump.jpg" class="img-circle"/>');
+          else if (countDownTimer === (MAXTRUMPTIMEVALUE * 0)){
+            finalRating = parseInt($('#points').text(currentRating));
           }
         } else {
           countDownTimer -= penalty;
           penalty = 0;
-        }
+
+        } //end if (penalty === 0)
+
 
   //***************** resets the clock **************************
         if (countDownTimer > MAXTRUMPTIMEVALUE){
@@ -284,11 +287,13 @@ function approvalRating(){
           $('#slider').val(String(countDownTimer));
 
         } else {
+
           $('.main-container').remove();
+          $('#approval-rating').text(finalRating);
           $('#twitter-page').css("visibility", "visible");
         }
 
-      }
+      } //end function timeTrumpMeter()
 
 
 
@@ -296,9 +301,8 @@ function approvalRating(){
 
   function createInstance(){
 
-    $('#situation-image').empty();
-    $('#twitter-image').empty();
     game =  new TrumpGame(options);
+    $('#twitter-image').empty();
     this.situation = game.getCrisis();
     correct = this.situation.correctAnswer;
 

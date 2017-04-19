@@ -20,7 +20,7 @@ var TrumpGame = function(options){
 
 TrumpGame.prototype._getRandomCrisis = function(){
 
-  var crisisIndex = Math.floor(Math.random()* (this.options.crisis.length-1));
+  var crisisIndex = Math.floor(Math.random()* (this.options.crisis.length));
   return this.options.crisis[crisisIndex];
 
 };

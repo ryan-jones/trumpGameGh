@@ -41,7 +41,7 @@ body {
 }
 
 #start-image{
-  margin: 10% 0 0 0;
+  /*margin: 10% 0 0 0;*/
 }
 
 #maga-bar {
@@ -135,9 +135,10 @@ body {
 }
 
 img {
-  max-height:100%;
+  max-height:auto%;
   max-width:100%;
   padding: 5%
+
 
 }
 
@@ -248,10 +249,10 @@ img {
    visibility: hidden;
  }
 
- #smirk img{
-   margin-top: 5%;
+ /*#smirk img{
+   margin-top: -5%;
 
- }
+ }*/
 
  #twitter-image{
    max-width: 100%;
