@@ -18,7 +18,7 @@
         <div class="row start-page">
           <div class="row" id="start-header" >
             <div class="row" id="start-headline">
-              <div class="col-md-12 maga"><h1> MAGA: The Game</h1></div>
+              <div class="col-md-12" id="maga"><h1> MAGA: The Game</h1></div>
             </div>
             <div class = "row">
               <div class ="col-md-3"></div>
@@ -36,7 +36,7 @@
           <div class="second-container" id="maga-bar">
             <div class="row" id="btn-start">
               <div class="col-md-12"  >
-                <h2 >Take our country back</h2>
+                <h2 id="start-text">Take our country back</h2>
               </div>
             </div>
           </div> <!--second-container -->
@@ -134,7 +134,6 @@
 
 
       <div class="row main-container">
-
         <div class="row" id="trump-headline" >
           <div class="col-md-3 trump-meter"><div id="trump-meter-img"><img  src = "images/happy-trump.jpg" class="img-circle"/></div>
           <div id="pop-ups"></div>
@@ -169,8 +168,15 @@
         </div> <!-- game-body-->
 
         <div class="col-md-2 trump-meter" >
-          <img  id="kimjongun" src="images/kimjongun.jpg" class="img-circle"/>
-        </div>
+          <div id="kimjongun">
+            <img   src="images/kimjongun.jpg" class="img-circle"/>
+            <div id ="kimjongun-div"></div>
+          </div>
+          <div id="bannon">
+            <img   src="images/bannon.jpg" class="img-circle"/>
+            <div id ="bannon-div"></div>
+          </div>
+       </div> <!-- trump meter-->
 
         <div class="row timepoints">
           <div class="col-md-6"><h4>Timer: <span id ="time">0</span><span>  seconds</span></h4></div>

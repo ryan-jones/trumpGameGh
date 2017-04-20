@@ -103,39 +103,50 @@ var clearJournalist;
 var clearTrumpTimer;
 var clearApproval;
 var clearGameTime;
+var clearKim;
+var clearBannon;
 var instance;
 var ivanka = options.crisis[options.crisis.length-1];
 
 
 window.onload = function(){
 
-// $('.audio').append('<audio autoplay><source src="images/03 America, F__k Yeah.mp3"></audio>');
+$('.audio').append('<audio autoplay><source src="images/03 America, F__k Yeah.mp3"></audio>');
 
-$('.myCarousel').slick({
-  autoplay: true,
-  autoplaySpeed: 3900,
-  });
-
-var endCarousel = function(){
-  $('.myCarousel').remove();
-};
-
-var startNewCarousel = function(){
-  $('.wrestle').toggle();
-  $('.wrestle').slick({
+  $('.myCarousel').slick({
     autoplay: true,
-    autoplaySpeed: 8000
-  });
-  $('.maga').slideDown("slow");
-};
+    autoplaySpeed: 3900,
+    });
 
-var fadeinMaga = function(){
-  $('.maga-bar').fadeIn("slow");
-};
+  var endCarousel = function(){
+    $('.myCarousel').remove();
+  };
 
-setTimeout(endCarousel, 7800);
-setTimeout(startNewCarousel, 7800);
-setTimeout(fadeinMaga, 9000);
+  var startNewCarousel = function(){
+    $('.wrestle').toggle();
+    $('.wrestle').slick({
+      autoplay: true,
+      autoplaySpeed: 8000
+    });
+  };
+
+  var slideDownTitle = function(){
+    $('#maga').slideDown(1500);
+  };
+
+  var slideDownMaga = function(){
+    $('#maga-bar').slideDown(2000);
+  };
+
+  var fadeinMagaText = function(){
+    $('#start-text').fadeIn(2000);
+  };
+
+  setTimeout(endCarousel, 7800);
+  setTimeout(startNewCarousel, 7800);
+  setTimeout(slideDownTitle, 10000);
+  setTimeout(slideDownMaga, 12000);
+  setTimeout(fadeinMagaText, 13000);
 
 
 
@@ -158,6 +169,7 @@ setTimeout(fadeinMaga, 9000);
 
   $('.btn-game').click(function(){
     $('.audio').remove();
+    $('.main-container').append('<audio autoplay><source src="images/dumb.mp3" id="dumb"></audio>');
     $('.intro-page').remove();
     $('.main-container').toggle();
     gameConditions();
@@ -238,7 +250,9 @@ setTimeout(fadeinMaga, 9000);
       clearTrumpTimer = setInterval(trumpMeterTimer,1000);
       clearApproval = setInterval(approvalRating, 1000);
       clearJournalist = setTimeout(journalistTimer, 1000* (Math.floor(Math.random()*60)));
-      clearIntervalTimer = setInterval(noteAdder, 5000);
+      clearIntervalTimer = setInterval(noteAdder, 20000);
+      clearKim = setTimeout(kimTimer, 1000 * (Math.floor(Math.random()*60)));
+      clearBannon = setTimeout(bannonTimer, 1000 * (Math.floor(Math.random()*60)));
     }
 
 
@@ -374,6 +388,41 @@ function noteAdder(){
     } //journalistTimer()
 
 
+
+//********* Kim Jong Un Timer ***********************
+
+    var countDownKimTimer = 60;
+
+      function kimTimer(){
+        countDownKimTimer--;
+        if (countDownKimTimer !== 0){
+          if(countDownTimer>0){
+          $('#kimjongun').slideDown("1500");
+          $('#kimjongun-div').notify('Death to America!', 'warn');
+          }
+        }
+        //generate random interval for next Kimjongun
+
+      } //kimTimer()
+
+
+//****************** Steve Bannon Timer ************************************
+
+    var countDownBannonTimer = 60;
+
+    function bannonTimer(){
+      countDownBannonTimer--;
+      if (countDownBannonTimer !== 0){
+        if(countDownTimer>0){
+        $('#bannon').slideDown("1500");
+        $('#bannon-div').notify('Wanna ban the muslims?', 'warn');
+        }
+      }
+      //generate random interval for next Bannon
+
+    } //bannonTimer()
+
+
 //*************** creates the countdown timer for the Trump Meter *********************
 
       function trumpMeterTimer(){
@@ -493,6 +542,7 @@ function noteAdder(){
         clearInterval(clearApproval);
         clearInterval(clearJournalist);
         clearInterval(clearTrumpTimer);
+        clearInterval(clearBannon);
 
       }
 
