@@ -193,11 +193,13 @@ setTimeout(fadeinMagaText, 11000);
 
   $('.btn-game').click(function(){
     $('.audio').remove();
-    $('.main-container').append('<audio autoplay><source src="images/blackBetty.mp3" id="dumb" value="75"></audio>');
+    $('.main-container').append('<audio controls autoplay><source src="images/blackBetty.mp3" id="dumb" value="75"></audio>');
     $('.intro-page').remove();
-    $('.main-container').toggle();
-    gameConditions();
     window.scrollTo(0,0);
+    $('.main-container').toggle();
+
+    gameConditions();
+
 
   }); //  $('.btn-primary').click(function()
 
