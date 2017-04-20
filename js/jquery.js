@@ -1,4 +1,4 @@
-const MAXTRUMPTIMEVALUE = 60;
+const MAXTRUMPTIMEVALUE = 120;
 
 var sliderVal = MAXTRUMPTIMEVALUE;
 var options = {
@@ -63,7 +63,7 @@ var options = {
 
     { desc:"Trump forgot if a strong dollar is a good or bad thing", imgName: "unhappy-trump.jpg",
       wrongAnswers: [ 'Weak is never good, Mr. President', 'Should we try the Google?' ],
-      correctAnswer: "As long as it is strong than Obama's dollar",
+      correctAnswer: "As long as it is stronger than Obama's dollar",
       tweet: "northkorea-tweet.jpg"},
 
     { desc: "Trump discovers his hands are too small to open a jar of queso dip", imgName: "hands.jpg",
@@ -258,8 +258,8 @@ $('.audio').append('<audio autoplay><source src="images/03 America, F__k Yeah.mp
       clearApproval = setInterval(approvalRating, 1000);
       clearJournalist = setTimeout(journalistTimer, 1000* (Math.floor(Math.random()*60)));
       clearIntervalTimer = setInterval(noteAdder, 20000);
-      clearKim = setTimeout(kimTimer, 1000 * (Math.floor(Math.random()*60)));
-      clearBannon = setTimeout(bannonTimer, 1000 * (Math.floor(Math.random()*60)));
+      clearKim = setTimeout(kimTimer, 1000 * (Math.floor(Math.random()*90)));
+      clearBannon = setTimeout(bannonTimer, 1000 * (Math.floor(Math.random()*90)));
     }
 
 
@@ -280,7 +280,7 @@ $('.audio').append('<audio autoplay><source src="images/03 America, F__k Yeah.mp
     }
     else {
       //user clicked on wrong answer
-      penalty = 10;
+      penalty = 20;
     }
 
   });
@@ -398,7 +398,7 @@ function noteAdder(){
 
 //********* Kim Jong Un Timer ***********************
 
-    var countDownKimTimer = 60;
+    var countDownKimTimer = 120;
 
       function kimTimer(){
         countDownKimTimer--;
@@ -415,7 +415,7 @@ function noteAdder(){
 
 //****************** Steve Bannon Timer ************************************
 
-    var countDownBannonTimer = 60;
+    var countDownBannonTimer = 120;
 
     function bannonTimer(){
       countDownBannonTimer--;
