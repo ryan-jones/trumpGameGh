@@ -13,7 +13,7 @@ var options = {
       tweet: "autism-tweet.png"},
 
 
-    { desc:'The "golden shower" video tape has been leaked', imgName: "",
+    { desc:'The "golden shower" video tape has been leaked', imgName: "pee.jpg",
       wrongAnswers: ["Suggest sending SEAL Team 6 to eliminate Rosie O'Donnel", 'Fire the last remaining African-American White House employee so that "the staff match the walls"'],
       correctAnswer: "Make up some ridiculous bullshit about wiretapped microwaves and put it on Twitter",
       tweet: "barneynipples.png"},
@@ -71,6 +71,16 @@ var options = {
       correctAnswer: "Arrange for several dozen strippers to come to White House to commemorate International Women's Day",
       tweet: "sleepychucktweet.png"},
 
+      {desc: "Steve Bannon got stuck in the air vents again", imgName: "bannon.jpg",
+       wrongAnswers: ["uh-uh, you get him. I'm not getting anywhere near that guy", "Good, let him die up there"],
+       correctAnswer: "Someone hold my jacket. I'm going in to save the president",
+       tweet: "snoop-dog-tweet.png"},
+
+    {desc: "Mexico called. They aren't paying for the wall", imgName:"mexico.jpg",
+     wrongAnswers: ["Of they course they won't. They use fake money over there", "It's ok just tell Trump they will and then charge it to Visa"],
+     correctAnswer: "What's a 'Mexico'?",
+     tweet: "mexicorape-tweet.png"},
+
     { desc: 'Ivanka Trump forgot to close the door while changing', imgName: 'ivanka.jpg',
       wrongAnswers: ['ohshitohshitohshitohshitohshitohshit', 'Shoot her! Shoooooooot her!'],
       correctAnswer: 'Take a bullet for America and jump in the way',
@@ -88,13 +98,19 @@ var options = {
 
   {question: "How does the president intend to make Mexico pay for the wall?", imgName: "jake-tapper.jpg",
    wrongAnswers: ["Uh, taxes on tequila and oversized hats", "Ransom illegal immigrants to their families, of course"],
-   correctAnswer: "The president never said that he would make Mexico build the wall"}
- //  {question:
- //   wrongAnswers:
- //   correctAnswer:}
+   correctAnswer: "The president never said that he would make Mexico build the wall"},
+
+  {question: "Do you reject images that show how many people were at the inauguration?", imgName:"blitzer.jpg",
+   wrongAnswers: ["They were shot at a bad angle!", "Trump says two million, so there was two million"],
+   correctAnswer: "We all know that satellites have a liberal bias"},
+
+   {question: "Oh shit! Sean Spicer is choking on his gum!", imgName:"sean-spicer.jpg",
+    wrongAnswers: ["Get him medical attention... after we repeal Obamacare", "Now's my chance for a career change"],
+    correctAnswer: "Leave him. He was just tired of all the winning"},
   ];
 
-var notifications = ["Coal regulations rolled back. Miners can work again!", "Dakota pipeline complete! Indian tears fuel job growth", "Climate change officially doesn't exist!", "Border wall built on credit!", "We locked her up!", "Consumers goods only increased 20% after import tax!" ];
+var notifications = ["Coal regulations rolled back. Miners can work again!", "Dakota pipeline complete! Indian tears fuel job growth", "Climate change officially doesn't exist!", "Border wall built on credit!", "We locked her up!", "Consumers goods only increased 20% after import tax!", "Muslim ban ruling overturned!", "Ivanka won a new Chinese contract!" ];
+
 
 var game;
 
@@ -106,6 +122,7 @@ var clearGameTime;
 var clearKim;
 var clearBannon;
 var instance;
+var approvalText;
 var ivanka = options.crisis[options.crisis.length-1];
 
 
@@ -113,47 +130,47 @@ window.onload = function(){
 
 $('.audio').append('<audio autoplay><source src="images/03 America, F__k Yeah.mp3"></audio>');
 
-  $('.myCarousel').slick({
+$('.myCarousel').slick({
+  autoplay: true,
+  autoplaySpeed: 3900,
+  });
+
+var endCarousel = function(){
+  $('.myCarousel').remove();
+};
+
+var startNewCarousel = function(){
+  $('.wrestle').toggle();
+  $('.wrestle').slick({
     autoplay: true,
-    autoplaySpeed: 3900,
-    });
+    autoplaySpeed: 8000
+  });
+};
 
-  var endCarousel = function(){
-    $('.myCarousel').remove();
-  };
+var slideDownTitle = function(){
+  $('#maga').slideDown(1500);
+  $('.start-page').css({'margin':'0 10%'});
+};
 
-  var startNewCarousel = function(){
-    $('.wrestle').toggle();
-    $('.wrestle').slick({
-      autoplay: true,
-      autoplaySpeed: 8000
-    });
-  };
+var moveStartPage = function(){
 
-  var slideDownTitle = function(){
-    $('#maga').slideDown(1500);
-    $('.start-page').css({'margin':'0 10%'});
-  };
+  $('.start-page').slideDown(1000);
+};
 
-  var moveStartPage = function(){
+var slideDownMaga = function(){
+  $('#maga-bar').slideDown(2000);
+};
 
-    $('.start-page').slideDown(1000);
-  };
+var fadeinMagaText = function(){
+  $('#start-text').fadeIn(2000);
+};
 
-  var slideDownMaga = function(){
-    $('#maga-bar').slideDown(2000);
-  };
-
-  var fadeinMagaText = function(){
-    $('#start-text').fadeIn(2000);
-  };
-
-  setTimeout(endCarousel, 7800);
-  setTimeout(startNewCarousel, 7800);
-  setTimeout(moveStartPage, 9800);
-  setTimeout(slideDownTitle, 2000);
-  setTimeout(slideDownMaga, 2000);
-  setTimeout(fadeinMagaText, 2000);
+setTimeout(endCarousel, 7800);
+setTimeout(startNewCarousel, 7800);
+setTimeout(moveStartPage, 9800);
+setTimeout(slideDownTitle, 10000);
+setTimeout(slideDownMaga, 11000);
+setTimeout(fadeinMagaText, 11000);
 
 
 
@@ -176,7 +193,7 @@ $('.audio').append('<audio autoplay><source src="images/03 America, F__k Yeah.mp
 
   $('.btn-game').click(function(){
     $('.audio').remove();
-    $('.main-container').append('<audio autoplay><source src="images/dumb.mp3" id="dumb"></audio>');
+    $('.main-container').append('<audio autoplay><source src="images/blackBetty.mp3" id="dumb" value="75"></audio>');
     $('.intro-page').remove();
     $('.main-container').toggle();
     gameConditions();
@@ -249,17 +266,18 @@ $('.audio').append('<audio autoplay><source src="images/03 America, F__k Yeah.mp
     function gameConditions(){
 
       createInstance();
-      $('#slider').val(MAXTRUMPTIMEVALUE);
+      $('#slider-range').val(MAXTRUMPTIMEVALUE);
       $('#points').val(0);
 
 
       clearGameTime = setInterval(gameTimeCounter,1000);
       clearTrumpTimer = setInterval(trumpMeterTimer,1000);
       clearApproval = setInterval(approvalRating, 1000);
-      clearJournalist = setTimeout(journalistTimer, 1000* (Math.floor(Math.random()*60)));
+      clearJournalist = setTimeout(journalistTimer, 1000* (Math.floor(Math.random()*30)));
       clearIntervalTimer = setInterval(noteAdder, 20000);
-      clearKim = setTimeout(kimTimer, 1000 * (Math.floor(Math.random()*90)));
-      clearBannon = setTimeout(bannonTimer, 1000 * (Math.floor(Math.random()*90)));
+      clearKim = setTimeout(kimTimer, 1000 * (Math.floor(Math.random()*60)));
+      clearBannon = setTimeout(bannonTimer, 1000 * (Math.floor(Math.random()*60)));
+      clearAudio = setInterval(audioselector,1000 * (Math.floor(Math.random()*20)));
     }
 
 
@@ -276,7 +294,7 @@ $('.audio').append('<audio autoplay><source src="images/03 America, F__k Yeah.mp
     // $('#situation-image').empty();
 
       createInstance();
-      penalty = -10;
+      penalty = -20;
     }
     else {
       //user clicked on wrong answer
@@ -340,10 +358,15 @@ $('.audio').append('<audio autoplay><source src="images/03 America, F__k Yeah.mp
     var selectJournalistOption = $(this).text();
 
   if (selectJournalistOption == correctJournalistAnswer){ //correct is from randomJournalistQuestion()
+
     $('#journalist-page').toggle();
     $('.main-container').toggle();
+    $('.main-container').append('<audio autoplay><source src="images/words.mp3"></audio>');
     }
   });
+
+
+
 
 //************************** creating notifications *******************************
 
@@ -351,12 +374,13 @@ function noteAdder(){
   var noteIndex = Math.floor(Math.random()*notifications.length);
   var Note = notifications.splice(noteIndex,1);
 
-
   $('#pop-ups').notify(Note, "success");
   $('#accomplishments').append('<div><h4>' + Note + '</h4></div>');
 
 
 }
+
+
 //*****************************  Countup Timer ************************************
   function gameTimeCounter(){
       var currentTime = $('#time').text();
@@ -422,7 +446,7 @@ function noteAdder(){
       if (countDownBannonTimer !== 0){
         if(countDownTimer>0){
         $('#bannon').slideDown("1500");
-        $('#bannon-div').notify('Wanna ban the muslims?', 'warn');
+        $('#bannon-div').notify('Wanna ban some muslims?', 'warn');
         }
       }
       //generate random interval for next Bannon
@@ -431,9 +455,10 @@ function noteAdder(){
 
 
 //*************** creates the countdown timer for the Trump Meter *********************
+  countDownTimer = (parseInt($('#slider-range').val()+'%'));
 
       function trumpMeterTimer(){
-        countDownTimer = parseInt($('#slider').val());
+
         var finalRating = 0;
         var currentRating = 0;
         // instance = thisInstance;
@@ -487,14 +512,16 @@ function noteAdder(){
             } else {
             $('#trump-meter-img').empty();
             $('#trump-meter-img').append('<img src= "images/annoyed-trump.jpg" class="img-circle"/>');
+
             currentRating--;
             }
 
             if (currentRating <=0){
+
               currentRating =0;
               $('#points').text(currentRating);
             } else {
-              $('#points').text(currentRating);
+              $('#points').text(currentRating*2);
             }
           }
 
@@ -506,6 +533,8 @@ function noteAdder(){
             } else {
             $('#trump-meter-img').empty();
             $('#trump-meter-img').append('<img src= "images/furious-trump.jpg" class="img-circle"/>');
+            $('.main-container').append('<audio autoplay><source src="images/rapists.mp3"></audio>');
+
             }
           }
 
@@ -527,13 +556,16 @@ function noteAdder(){
   //***************** makes sure the slider's value equals the timer's *********
         if (countDownTimer > 0){
 
-          $('#slider').val(String(countDownTimer));
+          $('#slider-bar').css('width',String(2*countDownTimer));
+          $('#points').text(currentRating);
 
         } else {
-          endGame();
+
           $('.main-container').toggle();
           $('#approval-rating').text(finalRating);
+          $('approval-rating-value').text(approvalText);
           $('#twitter-page').css("visibility", "visible");
+          endGame();
         }
 
       } //end function timeTrumpMeter()
@@ -543,13 +575,13 @@ function noteAdder(){
 
       //**********************  Clears all timers ***************************
       function endGame(){
-        console.log("cleartime", clearIntervalTimer);
         clearInterval(clearIntervalTimer);
         clearInterval(clearGameTime);
         clearInterval(clearApproval);
         clearInterval(clearJournalist);
         clearInterval(clearTrumpTimer);
         clearInterval(clearBannon);
+        clearInterval(clearAudio);
 
       }
 

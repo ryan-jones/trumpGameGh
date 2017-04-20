@@ -9,7 +9,7 @@
     <link type = "text/css" rel="stylesheet" href="css/main.css"/>
     <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
-  </head>
+<link href="https://fonts.googleapis.com/css?family=Bangers|Barrio|Hanalei+Fill|Istok+Web|Luckiest+Guy|Press+Start+2P|Sigmar+One" rel="stylesheet">  </head>
   <body>
     <section class = "container-fluid">
       <section class="audio">
@@ -36,7 +36,7 @@
           <div class="second-container" id="maga-bar">
             <div class="row" id="btn-start">
               <div class="col-md-12"  >
-                <h2 id="start-text">Take our country back</h2>
+                <h2 id="start-text">Америка на первом месте</h2>
               </div>
             </div>
           </div> <!--second-container -->
@@ -57,7 +57,7 @@
 
             <div class="row instructions">
               <div class="col-md-4"><span><img src = "images/businessman.png"/></span></div>
-              <div class="col-md-8" id="opportunity"><h3> You've been given the amazing opportunity to help make America great again. Our Dear Leader has got some <span class="red-text">HUGE</span> ideas, bigly.</h3></div>
+              <div class="col-md-8" id="opportunity"><h3> You've been given the amazing opportunity to help make America great again. Our Dear Leader has got some <span class="red-text"> HUGE </span> ideas, bigly.</h3></div>
             </div>
             <div class="row instructions" >
               <div class="col-md-8"><h3> There's just one problem. Fake news like the failing New York Times keep on taking the president's tweets and actions and are using them to distract America from our <span class="red-text">amazing</span> work. <br> Sad!</h3></div>
@@ -134,12 +134,17 @@
 
 
       <div class="row main-container">
+
         <div class="row" id="trump-headline" >
           <div class="col-md-3 trump-meter"><div id="trump-meter-img"><img  src = "images/happy-trump.jpg" class="img-circle"/></div>
           <div id="pop-ups"></div>
-          <input id="slider" type="range"
+          <div id="slider">
+            <div id="slider-bar"></div>
+          </div>
+          <input id="slider-range" type="range"
                min="0" max="120" step="1" value="120"/>
           </div> <!--trump-meter-->
+
 
           <div class="col-md-7" id="game-body">
             <div class="second-container game-container">
@@ -175,7 +180,7 @@
 
         <div class="row timepoints">
           <div class="col-md-3"></div>
-          <div class="col-md-3" id="time-space"><h4>Timer: <span id ="time">0</span><span>  seconds</span></h4></div>
+          <div class="col-md-3" id="time-space"><h4>Timer: <span id="time">0</span><span>  seconds</span></h4></div>
           <div class="col-md-3" id="points-space"><h4>Approval Rating: <span id ="points">0</span>%</h4></div>
           <div class="col-md-3"></div>
         </div>
@@ -218,18 +223,23 @@
 
       <div class="second-container" id="twitter-page">
         <div class="row">
-          <div class="col-md-12" id="game-over"><h3 >Great work, cuck. See yourself out</h3></div>
+          <div class="col-md-12" id="game-over"><h2 >Great work, cuck. See yourself out</h2></div>
         </div>
         <div class ="row">
-            <div class="col-md-12" id="twitter-image"></div>
+            <div class="col-md-3"></div>
+            <div class="col-md-6" id="twitter-image"></div>
+            <div class="col-md-3"></div>
+
         </div>
         <div class ="row">
           <div class="col-md-12" id="smirk"><span><img src = "images/smirk-donald.jpg"/></span></div>
         </div>
         <div class="row">
-          <div class="col-md-4"><h3>Approval Rating: <span id="approval-rating"> 0</span>%</div>
+          <div class="col-md-4"><h3>Approval Rating: <span id="approval-rating-value">0</span>%</div>
           <div class="col-md-4"><h3></h3></div>
-          <div class="col-md-4" id="accomplishments"> <h3>Accomplishments: </h3></div>
+          <div class="col-md-4" id="accomplishments">
+            <h3>Accomplishments: </h3>
+          </div>
         </div>
         <div class="row">
           <div class="col-md-4"></div>
@@ -244,6 +254,9 @@
     crossorigin="anonymous"></script>
     <script type="text/javascript" src="js/main.js"></script>
     <script src = "js/jquery.js"></script>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script type="text/javascript" src="js/notify.js"></script>
     <script type="text/javascript" src="js/slick.js"></script>
 

@@ -9,21 +9,19 @@ body {
 }
 
 
-#bannon {
-  margin-top: 100%;
+.myCarousel{
+  text-align: center;
 }
+
 
 .gif {
   max-width: 100%;
   max-height: 100%;
 }
 
-.intro-page , #journalist-page, #dumb{
-  display: none;
-  margin: 1% 10%;
-
+#maga{
+  font-family: 'Barrio', 'cursive';
 }
-
 
 #maga, #maga-bar, #kimjongun, #bannon {
   display: none;
@@ -50,10 +48,16 @@ body {
   color: white;
 }
 
-.myCarousel{
-  text-align: center;
+#bannon {
+  margin-top: 100%;
 }
 
+
+.intro-page , #journalist-page, #dumb{
+  display: none;
+  margin: 1% 10%;
+
+}
 
 .start-page, .intro-page, .main-container, #twitter-page {
   text-align: center;
@@ -96,7 +100,9 @@ body {
   margin: 10% 0 0 0;
 }
 
-
+#start-text{
+  font-family: 'Istok Web', sans-serif;
+}
 #trumpdance{
   margin-left: 15%;
 }
@@ -115,8 +121,9 @@ body {
   display:none;
 }
 
-#intro-headline  h1, #opportunity {
+#intro-headline  h1, #opportunity, #game-over {
   margin-top: 5%;
+  font-family: 'Luckiest Guy', cursive;
 }
 
 
@@ -197,11 +204,23 @@ img {
 
 #slider {
   margin: 70% 0% 10% 0%;
-
+  width: 240px;
+  background-color: red;
   -ms-transform: rotate(90deg); /* IE 9 */
   -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
   transform: rotate(90deg);
 
+}
+
+#slider-range{
+  visibility: hidden;
+  width: 0px;
+}
+
+#slider-bar {
+
+    height: 30px;
+    background-color: white;
 }
 
 
@@ -333,6 +352,14 @@ img {
  }*/
 
  #twitter-image{
+   text-align: center;
    max-width: 100%;
    max-height: auto%;
  }
+
+#accomplishments{
+  height: 50%;
+  padding-right: 5%;
+  /*font-family: 'Sigmar One', cursive;*/
+  color: white;
+}
