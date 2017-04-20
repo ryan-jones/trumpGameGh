@@ -132,6 +132,12 @@ $('.audio').append('<audio autoplay><source src="images/03 America, F__k Yeah.mp
 
   var slideDownTitle = function(){
     $('#maga').slideDown(1500);
+    $('.start-page').css({'margin':'0 10%'});
+  };
+
+  var moveStartPage = function(){
+
+    $('.start-page').slideDown(1000);
   };
 
   var slideDownMaga = function(){
@@ -144,9 +150,10 @@ $('.audio').append('<audio autoplay><source src="images/03 America, F__k Yeah.mp
 
   setTimeout(endCarousel, 7800);
   setTimeout(startNewCarousel, 7800);
-  setTimeout(slideDownTitle, 10000);
-  setTimeout(slideDownMaga, 12000);
-  setTimeout(fadeinMagaText, 13000);
+  setTimeout(moveStartPage, 9800);
+  setTimeout(slideDownTitle, 2000);
+  setTimeout(slideDownMaga, 2000);
+  setTimeout(fadeinMagaText, 2000);
 
 
 
